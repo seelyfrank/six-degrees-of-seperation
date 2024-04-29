@@ -72,16 +72,7 @@ pub fn read_graph_from_file(filename: &str, nodes: u32) -> Result<Graph, std::io
 
     for line in reader.lines() {
         let line = line?; // unwrap if not empty or error
-        let nodes: Vec<&str> = line.split_whitespace().collect();
-
-        if nodes.len() != 2 {
-            println!("Invalid line in the input file: {line}");
-            continue; // skip
-        }
-
-        let from_node = nodes[0].to_string();
-        let to_node = nodes[1].to_string();
-        graph.add_edge(from_node, to_node);
+        let nodes: Vec< = Vec<&str> = line.split_whitespace().collect();
     }
-    Ok(graph)
+
 }
