@@ -43,8 +43,7 @@ pub fn bfs_shortest(graph: &HashMap<String, Vec<String>>, start_node: &str, targ
     // set its distance to 0 (itself)
     distance.insert(start_node.to_string(), 0);
 
-    // while wueue is not empty, iterate through each in queue
-        // return if node is found, else, go to next neighbors
+    // while wueue is not empty
     while let Some(node) = queue.pop_front() {
         if node == target_node {
             return Ok(distance[&node]);

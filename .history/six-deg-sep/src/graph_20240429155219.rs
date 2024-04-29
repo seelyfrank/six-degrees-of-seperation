@@ -30,21 +30,14 @@ impl Graph {
 }
 
 pub fn bfs_shortest(graph: &HashMap<String, Vec<String>>, start_node: &str, target_node: &str) -> Result<usize, BFSError> {
-    
-    // used to keep track of nodes and distance
     let mut visited = HashSet::new();
     let mut queue = VecDeque::new();
     let mut distance = HashMap::new();
 
-    // start by declaring first node as visited
     visited.insert(start_node.to_string());
-    // push it into the queue
     queue.push_back(start_node.to_string());
-    // set its distance to 0 (itself)
     distance.insert(start_node.to_string(), 0);
 
-    // while wueue is not empty, iterate through each in queue
-        // return if node is found, else, go to next neighbors
     while let Some(node) = queue.pop_front() {
         if node == target_node {
             return Ok(distance[&node]);
@@ -60,5 +53,7 @@ pub fn bfs_shortest(graph: &HashMap<String, Vec<String>>, start_node: &str, targ
             }
         }
     }
+
     Err(BFSError::NodeNotFound)
+}
 }
