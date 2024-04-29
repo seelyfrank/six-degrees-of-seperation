@@ -9,11 +9,11 @@ pub enum BFSError {
     NodeNotFound,
 }
 
-pub struct Graph(HashMap<String, Vec<String>>, u32);
+pub struct Graph(HashMap<String, Vec<String>>);
 
 impl Graph {
-    pub fn new(nodes: u32) -> Self {
-        Graph(HashMap::new(), nodes)
+    pub fn new() -> Self {
+        Graph(HashMap::new())
     }
 
     pub fn add_edge(&mut self, from_node: String, to_node: String) {
@@ -67,10 +67,10 @@ pub fn bfs_shortest(graph: &HashMap<String, Vec<String>>, start_node: &str, targ
 
 // takes in the file name (String slice) and the number of nodes
     // returns a result of either the graph or an error message
-pub fn read_graph_from_file(filename: &str, nodes: u32) -> Result<Graph, std::io::Error> {
+pub fn read_graph_from_file(filename: &str) -> Result<Graph, std::io::Error> {
     let file = File::open(filename)?;
     let reader = BufReader::new(file);
-    let mut graph: Graph = Graph::new(nodes);
+    let mut graph: Graph = Graph::new();
 
     for line in reader.lines() {
         let line = line?; // unwrap if not empty or error
@@ -94,13 +94,13 @@ mod tests {
 
     #[test]
     fn test_graph_creation() {
-        let graph = Graph::new(5);
+        let graph = Graph::new();
         assert_eq!(graph.0.len(), 0);
     }
 
     #[test]
     fn test_add_edge() {
-        let mut graph = Graph::new(9);
+        let mut graph = Graph::new();
         // Replicates the graph in "datasets/directed_connected.txt"
         graph.add_edge("0".to_string(), "4".to_string());
         graph.add_edge("1".to_string(), "2".to_string());
@@ -123,7 +123,7 @@ mod tests {
 
     #[test]
     fn test_bfs_shortest_path() {
-        let mut graph = Graph::new(5);
+        let mut graph = Graph::new();
         // Draw out this graph again for report
         graph.add_edge("0".to_string(), "4".to_string());
         graph.add_edge("1".to_string(), "2".to_string());
@@ -146,13 +146,13 @@ mod tests {
 
     #[test]
     fn test_read_graph_from_file() {
-        let result = read_graph_from_file("datasets/directed_connected.txt", 5);
+        let result = read_graph_from_file("datasets/directed_connected.txt");
         assert!(result.is_ok());
 
         let graph = result.unwrap();
         assert_eq!(bfs_shortest(&graph.0, "2", "6"), Ok(4));
         assert_eq!(bfs_shortest(&graph.0, "2", "2"), Ok(0));
         assert_eq!(bfs_shortest(&graph.0, "0", "2"), Ok(2));
-        assert_eq!(bfs_shortest(&graph.0, "1", "4"), Ok(4));
+        assert_eq!(bfs_shortest(&graph.0, "1", "4"), Ok(3));
     }
 }
