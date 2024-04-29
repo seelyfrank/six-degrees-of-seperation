@@ -8,7 +8,6 @@ use std::io::{BufRead, BufReader};
 pub enum BFSError {
     NodeNotFound,
 }
-
 pub struct Graph(HashMap<String, Vec<String>>);
 
 impl Graph {

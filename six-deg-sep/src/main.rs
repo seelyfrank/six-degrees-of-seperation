@@ -3,8 +3,11 @@ use crate::graph::*;
 use rand::Rng;
 
 fn main() {
-    run_file("datasets/directed.txt", 8, 500, false, false);
-    run_file("datasets/directed_connected.txt", 8, 500, true, false);
+    run_file("datasets/directed.txt", 8, 500, false, true); // directed, set to show ajacency list
+    run_file("datasets/directed_connected.txt", 8, 500, false, true); //directed, set to show ajacency list
+    run_file("datasets/email-Eu-core.txt", 1005, 1000, false, false); // directed
+    run_file("datasets/epinions.txt", 75879, 100, false, false); // directed
+    run_file("datasets/slashdot0902.txt", 82168, 100, false, false); // undirected
 }
 
 // driver function
@@ -46,8 +49,6 @@ fn run_file(filename: &str, nodes: u32, test_iterations: u32, track_nodes: bool,
     let avg_len: f32 = paths_total as f32 / paths_found as f32;
     let connected: f32 = paths_found as f32 / test_iterations as f32 * 100.;
 
-    
-
     println!("Total paths found: {paths_found}");
     println!("Percent node-pairs connected to one another: {connected}%");
     println!("Average path length: {avg_len}");
@@ -57,8 +58,6 @@ fn run_file(filename: &str, nodes: u32, test_iterations: u32, track_nodes: bool,
     if print_adj_list { graph.print_adjacency_list(); }
 
     (paths_found, connected, avg_len, longest_path)
-
-    
 }
 
 #[cfg(test)]
@@ -92,7 +91,3 @@ mod tests {
         assert_eq!(connected, 100.);
     }
 }
-
-
-
-
