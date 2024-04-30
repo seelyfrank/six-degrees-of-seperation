@@ -6,16 +6,16 @@ fn main() {
     run_file("datasets/directed.txt", 8, 500, false, true); // directed, set to show ajacency list
     run_file("datasets/directed_connected.txt", 8, 500, false, true); //directed, set to show ajacency list
     run_file("datasets/email-Eu-core.txt", 1005, 1000, false, false); // directed
-    run_file("datasets/epinions.txt", 75879, 100, false, false); // directed
-    run_file("datasets/slashdot0902.txt", 82168, 100, false, false); // undirected
+    run_file("datasets/epinions.txt", 75879, 100, true, false); // directed
+    run_file("datasets/slashdot0902.txt", 82168, 300, true, false); // undirected
 }
 
 // driver function
 fn run_file(filename: &str, nodes: u32, test_iterations: u32, track_nodes: bool, print_adj_list: bool) -> (u32, f32, f32, u32) {
     
-    println!("-----------------------------------------------------------");
+    println!("----------------------------------------------------");
     println!("FILENAME: {filename}");
-    println!("-----------------------------------------------------------");
+    println!("----------------------------------------------------");
 
     // tracking variables
     let mut graph = read_graph_from_file(filename).expect("Error reading graph");
@@ -44,7 +44,7 @@ fn run_file(filename: &str, nodes: u32, test_iterations: u32, track_nodes: bool,
             }
         }
     }
-    if track_nodes {println!("-----------------------------------------------------------");}
+    if track_nodes {println!("----------------------------------------------------");}
 
     let avg_len: f32 = paths_total as f32 / paths_found as f32;
     let connected: f32 = paths_found as f32 / test_iterations as f32 * 100.;
@@ -53,7 +53,7 @@ fn run_file(filename: &str, nodes: u32, test_iterations: u32, track_nodes: bool,
     println!("Percent node-pairs connected to one another: {connected}%");
     println!("Average path length: {avg_len}");
     println!("Longest path length: {longest_path}");
-    println!("-----------------------------------------------------------");
+    println!("----------------------------------------------------");
 
     if print_adj_list { graph.print_adjacency_list(); }
 
