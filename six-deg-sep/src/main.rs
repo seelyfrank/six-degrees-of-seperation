@@ -3,11 +3,16 @@ use crate::graph::*;
 use rand::Rng;
 
 fn main() {
-    run_file("datasets/directed.txt", 8, 500, false, true); // directed, set to show ajacency list
-    run_file("datasets/directed_connected.txt", 8, 500, false, true); //directed, set to show ajacency list
+    // first three files contain graphs with the same nodes but different edges to make them either directed, directed but all chained, or undirected
+    run_file("datasets/directed.txt", 8, 10000, false, true); // directed, set to show ajacency list
+    run_file("datasets/directed_connected.txt", 8, 10000, false, true); //directed, set to show ajacency list
+    run_file("datasets/undirected.txt", 8, 10000,false, true); // undirected, set to show ajacency list
+
+    
+    // datasets taken from stanfords website
     run_file("datasets/email-Eu-core.txt", 1005, 1000, false, false); // directed
-    run_file("datasets/epinions.txt", 75879, 100, true, false); // directed
-    run_file("datasets/slashdot0902.txt", 82168, 300, true, false); // undirected
+    run_file("datasets/epinions.txt", 75879, 100, false, false); // directed
+    run_file("datasets/slashdot0902.txt", 82168, 100, false, false); // undirected
 }
 
 // driver function

@@ -30,6 +30,7 @@ impl Graph {
     }
 }
 
+
 pub fn bfs_shortest(graph: &HashMap<String, Vec<String>>, start_node: &str, target_node: &str) -> Result<usize, BFSError> {
     
     // used to keep track of nodes and distance
@@ -64,6 +65,7 @@ pub fn bfs_shortest(graph: &HashMap<String, Vec<String>>, start_node: &str, targ
     Err(BFSError::NodeNotFound)
 }
 
+
 // takes in the file name (String slice) and the number of nodes
     // returns a result of either the graph or an error message
 pub fn read_graph_from_file(filename: &str) -> Result<Graph, std::io::Error> {
@@ -77,7 +79,7 @@ pub fn read_graph_from_file(filename: &str) -> Result<Graph, std::io::Error> {
 
         if nodes.len() != 2 {
             println!("Invalid line in the input file: {line}");
-            continue; // skip
+            continue; // skip when invalid, let user know
         }
 
         let from_node = nodes[0].to_string();
