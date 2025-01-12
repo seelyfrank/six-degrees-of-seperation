@@ -20,7 +20,7 @@ chosen nodes, we should be able to compute the average distance between any two 
 that dataset, the most extended path length, the percentage of nodes found to have a link, and the
 total number of nodes found for a set amount of iterations.
 
-Links to datasets can be found here:
+Links to datasets can be found here:  
 [https://snap.stanford.edu/data/email-Eu-core.html](url)  
 [https://snap.stanford.edu/data/soc-sign-epinions.html](url)  
 [https://snap.stanford.edu/data/soc-Slashdot0902.html](url)  
